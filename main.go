@@ -71,7 +71,11 @@ func start_training(charName, charClass string) string {
 	var cmd string
 	for cmd != "skip" {
 		fmt.Print("Введи команду: ")
-		fmt.Scanf("%s\n", &cmd)
+		_, err := fmt.Scanf("%s\n", &cmd)
+		if err != nil {
+			fmt.Printf("%e", err)
+			return ""
+		}
 
 		if cmd == "attack" {
 			fmt.Println(attack(charName, charClass))
@@ -95,7 +99,11 @@ func choiseCharClass() string {
 
 	for approveChoice != "y" {
 		fmt.Print("Введи название персонажа, за которого хочешь играть: Воитель — warrior, Маг — mage, Лекарь — healer: ")
-		fmt.Scanf("%s\n", &charClass)
+		_, err := fmt.Scanf("%s\n", &charClass)
+		if err != nil {
+			fmt.Printf("%e", err)
+			return ""
+		}
 		if charClass == "warrior" {
 			fmt.Println("Воитель — дерзкий воин ближнего боя. Сильный, выносливый и отважный.")
 		} else if charClass == "mage" {
@@ -104,7 +112,11 @@ func choiseCharClass() string {
 			fmt.Println("Лекарь — могущественный заклинатель. Черпает силы из природы, веры и духов.")
 		}
 		fmt.Print("Нажми (Y), чтобы подтвердить выбор, или любую другую кнопку, чтобы выбрать другого персонажа: ")
-		fmt.Scanf("%s\n", &approveChoice)
+		_, err = fmt.Scanf("%s\n", &approveChoice)
+		if err != nil {
+			fmt.Printf("%e", err)
+			return ""
+		}
 		approveChoice = strings.ToLower(approveChoice)
 	}
 	return charClass
@@ -116,7 +128,10 @@ func main() {
 
 	var charName string
 	fmt.Print("...назови себя: ")
-	fmt.Scanf("%s\n", &charName)
+	_, err := fmt.Scanf("%s\n", &charName)
+	if err != nil {
+		fmt.Printf("%e", err)
+	}
 
 	fmt.Printf("Здравствуй, %s\n", charName)
 	fmt.Println("Сейчас твоя выносливость — 80, атака — 5 и защита — 10.")
